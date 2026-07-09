@@ -63,7 +63,7 @@ elif not st.session_state.get("game_over", False):
             
     st.write("---")
 
-    st.subheader("📊 Totale tussenstand")
+    st.subheader("📊 Tussenstand")
     for naam, score in st.session_state.huidige_stand.items():
         st.write(f"- **{naam}**: {score} punten")
 
