@@ -29,7 +29,7 @@ def start_game_loop(huidige_stand):
                 st.session_state.ronde += 1
                 st.rerun()
 
-        st.subheader("--- DE TUSSENSTAND ---")
+        st.subheader("--- DE Laatste ronde ---")
         for naam, score in huidige_stand.items():
             st.write(f"- **{naam}**: {score} punten")
 
