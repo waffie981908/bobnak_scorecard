@@ -29,13 +29,13 @@ def start_game_loop(huidige_stand):
                 st.session_state.ronde += 1
                 st.rerun()
 
-        st.subheader("--- Score Laatste Ronde:")
+        st.subheader("Score Laatste Ronde:")
         for naam, score in huidige_stand.items():
             st.write(f"- **{naam}**: {score} punten")
 
     else:
         st.header("\n 🎉 Het spel is afgelopen!")
-        st.subheader("--- EINDSTAND ---")
+        st.subheader("Eindstand:")
         for naam, score in huidige_stand.items():
             st.write(f"- **{naam}**: {score} punten")
             
