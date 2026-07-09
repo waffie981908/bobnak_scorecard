@@ -7,7 +7,7 @@ def start_game_loop(huidige_stand):
         st.session_state.game_over = False
 
     if not st.session_state.game_over:
-        st.header(f"--- RONDE {st.session_state.ronde} ---")
+        st.header(f"Ronde {st.session_state.ronde}")
         
         with st.form(key=f"ronde_{st.session_state.ronde}"):
             ronde_inputs = {}
