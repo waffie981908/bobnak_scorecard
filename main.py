@@ -22,7 +22,7 @@ if not st.session_state.game_started:
     else:
         st.info("Vul hierboven de namen in om de startknop te activeren.")
 else:
-    st.header("--- DE STARTSTAND ---")
+    st.header("--- DE TUSSENSTAND ---")
     for naam, score in st.session_state.huidige_stand.items():
         st.write(f"- **{naam}**: {score} punten")
     
