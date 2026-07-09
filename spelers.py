@@ -1,11 +1,15 @@
+import streamlit as st
+
 def vraag_spelernamen():
-    print("welkom, hoeveel mensen spelen mee?")
-    aantal = int(input())
+    st.subheader("Welkom, hoeveel mensen spelen mee?")
+    
+    aantal = st.number_input("Aantal spelers:", min_value=1, max_value=10, value=3)
     
     spelers = []
     
-    for i in range (aantal):
-        print(f"voer de {i + 1}ste naam in")
-        naam = input()
-        spelers.append(naam)
+    for i in range(aantal):
+        naam = st.text_input(f"Voer de {i + 1}ste naam in:", key=f"speler_naam_{i}")
+        if naam:
+            spelers.append(naam)
+            
     return spelers
