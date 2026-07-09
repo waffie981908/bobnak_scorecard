@@ -1,26 +1,46 @@
+import streamlit as st
+
 def start_game_loop(huidige_stand):
-    ronde = 1
-    game_over = False
+    if "ronde" not in st.session_state:
+        st.session_state.ronde = 1
+    if "game_over" not in st.session_state:
+        st.session_state.game_over = False
 
-    while not game_over:
-        print(f"\n--- RONDE {ronde} ---")
-        for naam, score in huidige_stand.items():
-            print(f"\nHoeveel punten heeft {naam} behaald in deze ronde?")
-            behaalde_punten = int(input())
-            huidige_stand[naam] = huidige_stand[naam] + behaalde_punten
+    if not st.session_state.game_over:
+        st.header(f"--- RONDE {st.session_state.ronde} ---")
         
+        with st.form(key=f"ronde_{st.session_state.ronde}"):
+            ronde_inputs = {}
+            for naam, score in huidige_stand.items():
+                ronde_inputs[naam] = st.number_input(f"Hoeveel punten heeft {naam} behaald?", min_value=-50, max_value=150, value=0, key=f"{naam}_{st.session_state.ronde}")
+            
+            submit = st.form_submit_button("Ronde afronden")
+            
+            if submit:
+                for naam in huidige_stand.keys():
+                    huidige_stand[naam] = huidige_stand[naam] + ronde_inputs[naam]
+                
+                for naam, score in huidige_stand.items():
+                    if score == 120:
+                        huidige_stand[naam] = int(score / 2)
+                    elif score > 120:
+                        st.session_state.game_over = True
+                
+                st.session_state.ronde += 1
+                st.rerun()
+
+        st.subheader("--- DE TUSSENSTAND ---")
         for naam, score in huidige_stand.items():
-            if score == 120:
-                huidige_stand [naam] = int(score / 2)
-            elif score > 120:
-                game_over = True
+            st.write(f"- **{naam}**: {score} punten")
 
-        print("\n--- DE TUSSENSTAND ---")
+    else:
+        st.header("\n 🎉 Het spel is afgelopen!")
+        st.subheader("--- EINDSTAND ---")
         for naam, score in huidige_stand.items():
-            print(f"- {naam}: {score} punten")
-        
-
-
-    ronde += 1
-
-    print("\n Het spel is afgelopen!")
+            st.write(f"- **{naam}**: {score} punten")
+            
+        if st.button("🔄 Speel opnieuw"):
+            del st.session_state.game_started
+            del st.session_state.ronde
+            del st.session_state.game_over
+            st.rerun()
