@@ -9,7 +9,7 @@ def vraag_spelernamen():
     
     for i in range(aantal):
         naam = st.text_input(f"Voer de {i + 1}ste naam in:", key=f"speler_naam_{i}")
-        if naam:
-            spelers.append(naam)
+        if naam.strip(): 
+            spelers.append(naam.strip())
             
     return spelers
