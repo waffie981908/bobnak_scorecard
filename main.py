@@ -59,7 +59,7 @@ elif not st.session_state.get("game_over", False):
     if st.session_state.laatste_ronde_scores:
         st.subheader("⏱️ Punten laatste ronde")
         for naam, score in st.session_state.laatste_ronde_scores.items():
-            st.write(f"- {naam}: +{score} punten")
+            st.write(f"- {naam}: {score} punten")
             
     st.write("---")
 
