@@ -17,7 +17,8 @@ if not st.session_state.game_started:
     de_spelers = []
     
     for i in range(aantal):
-        naam = st.text_input(f"Voer de {i + 1}ste naam in:", key=f"speler_naam_{i}")
+        extensie = "ste" if (i + 1) == 1 or (i + 1) == 8 else "de"
+        naam = st.text_input(f"Voer de {i + 1}{extensie} naam in:", key=f"speler_naam_{i}")
         if naam.strip():
             de_spelers.append(naam.strip())
     
