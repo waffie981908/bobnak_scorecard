@@ -71,7 +71,7 @@ else:
     st.balloons()
     st.header("🏁 Het spel is afgelopen!")
     
-    st.subheader("--- EINDSTAND ---")
+    st.subheader("Eindstand:")
     for naam, score in st.session_state.huidige_stand.items():
         st.write(f"- **{naam}**: {score} punten")
         
